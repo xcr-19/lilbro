@@ -4,8 +4,8 @@ from discord.ext import commands
 from lilb.coin_flip import CoinFlip
 
 
-
-bot = commands.Bot(command_prefix='.')
+intent = discord.Intents.default() 
+bot = commands.Bot(command_prefix='.', intents=intent)
 
 
 @bot.event
@@ -22,14 +22,5 @@ async def toss(ctx):
     coin_side = CoinFlip()
     value = coin_side.flip()
     await ctx.send(f'Got {value}')
-
-@bot.command()
-async def help(ctx):
-    help_command = """
-    .toss - Toss a coin and returns the result
-    .help - Display this help message
-"""
-    await ctx.send(help_command)
-
 
 bot.run(os.getenv('DISCORD_TOKEN'))
