@@ -1,28 +1,22 @@
-import discord
+#import discord
 import os
-from discord.ext import commands
+import interactions
+from interactions import slash_command, SlashContext
+#from discord.ext import commands
 from lilb.coin_flip import CoinFlip
 
+bot = interactions.Client()
 
-intent = discord.Intents.all()
-bot = commands.Bot(command_prefix='.', intents=intent)
-
-
-@bot.event
+@interactions.listen()
 async def on_ready():
     print(f'Logged in as {bot.user}')
 
-# @bot.event
-# async def on_message(message):
-#     if message.author == bot.user:
-#         return
-    
-#     await bot.process_commands(message)
-    
-@bot.command()
-async def toss(ctx):
+@slash_command(name='toss', description='Flip a coin')
+async def toss(ctx: SlashContext):
     coin_side = CoinFlip()
     value = coin_side.flip()
     await ctx.send(f'Got {value}')
 
-bot.run(os.getenv('DISCORD_TOKEN'))
+
+
+bot.start(os.getenv('DISCORD_TOKEN'))
