@@ -1,6 +1,9 @@
 import discord
+import os
 from discord.ext import commands
 from lilb.coin_flip import CoinFlip
+
+
 
 bot = commands.Bot(command_prefix='.')
 
@@ -27,3 +30,6 @@ async def help(ctx):
     .help - Display this help message
 """
     await ctx.send(help_command)
+
+
+bot.run(os.getenv('DISCORD_TOKEN'))
