@@ -1,5 +1,7 @@
 import os
 import json
+import random
+import lilb.constants as constants
 
 class Helpers():
 
@@ -18,3 +20,13 @@ class Helpers():
         with open(key) as f:
             data = [line.strip() for line in f]
             return data
+    
+    '''
+    Returns a random valorant map
+    '''
+    @staticmethod
+    def get_random_map():
+        chosen_map = random.choice(constants.VALO_MAPS)
+        map_name = chosen_map["name"]
+        image_path = chosen_map["image_path"]
+        return map_name,image_path
