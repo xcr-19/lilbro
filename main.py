@@ -4,7 +4,7 @@ from discord.ext import commands
 from lilb.coin_flip import CoinFlip
 
 
-intent = discord.Intents.default() 
+intent = discord.Intents.all()
 bot = commands.Bot(command_prefix='.', intents=intent)
 
 
@@ -12,10 +12,12 @@ bot = commands.Bot(command_prefix='.', intents=intent)
 async def on_ready():
     print(f'Logged in as {bot.user}')
 
-@bot.event
-async def on_message(message):
-    if message.author == bot.user:
-        return
+# @bot.event
+# async def on_message(message):
+#     if message.author == bot.user:
+#         return
+    
+#     await bot.process_commands(message)
     
 @bot.command()
 async def toss(ctx):
