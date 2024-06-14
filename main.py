@@ -1,12 +1,12 @@
 import os
 import interactions
 import asyncio
-from interactions import Embed, File, slash_command, SlashContext, slash_option, OptionType, SlashCommandChoice
+from interactions import Embed, File, slash_command, SlashContext, slash_option, OptionType, SlashCommandChoice, InteractionContext, Intents
 from lilb.coin_flip import CoinFlip
 from lilb.helpers import Helpers
 from lilb.quotes import Quotes
 
-bot = interactions.Client()
+bot = interactions.Client(intents=Intents.DEFAULT | Intents.MESSAGE_CONTENT,)
 quotes_key = Helpers.read_multi_line_file('config/quotes_keyword.txt')
 
 
